@@ -3,14 +3,9 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
-import {
-  Box,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, useTheme, useMediaQuery } from "@mui/material";
 import logo from "./../assets/Screenshot_2024-08-28_at_1.42.19_PM-removebg-preview.png";
 import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import circle from "./../assets/Screenshot_2024-08-28_at_1.46.52_PM-removebg-preview.png";
 

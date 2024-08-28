@@ -167,11 +167,40 @@ export const BoxStyles = {
     width: "350px",
   },
   variant11: { position: "relative", display: "inline-flex" },
-  variant12:{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }
+  variant12: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  variant13: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    mb: 2,
+  },
+  variant14: {
+    border: "1px solid #333",
+    borderRadius: "10px",
+    padding: "10px 10px",
+    display: "flex",
+    alignItems: "center",
+    cursor: "pointer",
+  },
+  paperprops: { color: "white", width: "400px", borderRadius: "10px" },
+  dialog1: {
+    m: 0,
+    p: 1,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  searchBox: {
+    display: "flex",
+    alignItems: "center",
+    border: "1px solid #9A9A9A",
+    padding: "0px 10px 0px 10px",
+    borderRadius:"10px"
+  },
 };
 
 

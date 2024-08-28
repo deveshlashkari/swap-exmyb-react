@@ -5,11 +5,6 @@ import {
   DialogContent,
   IconButton,
   TextField,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Avatar,
   Typography,
   Box,
   Divider,
@@ -41,17 +36,17 @@ const tokens2 = [
   { name: "DAI", balance: "0", icon: "" },
 ];
 
-const TokenDialog = ({ open, onClose, handleClick }:any) => {
+const TokenDialog = ({ open, onClose, handleClick }: any) => {
   const [search, setSearch] = useState("");
 
   const filteredTokens = tokens.filter((token) =>
     token.name.toLowerCase().includes(search.toLowerCase())
   );
 
-    const handleToken = (item:any) => {
-        console.log(item)
-        handleClick(item)
-    }
+  const handleToken = (item: any) => {
+    console.log(item);
+    handleClick(item);
+  };
   return (
     <Dialog
       open={open}
@@ -62,15 +57,7 @@ const TokenDialog = ({ open, onClose, handleClick }:any) => {
         },
       }}
     >
-      <DialogTitle
-        sx={{
-          m: 0,
-          p: 1,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+      <DialogTitle sx={BoxStyles.dialog1}>
         <Typography variant="h6">Select a token</Typography>
         <IconButton
           aria-label="close"
@@ -81,7 +68,7 @@ const TokenDialog = ({ open, onClose, handleClick }:any) => {
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box sx={BoxStyles.searchBox}>
           <SearchIcon sx={{ color: "white", mr: 1 }} />
           <TextField
             variant="outlined"

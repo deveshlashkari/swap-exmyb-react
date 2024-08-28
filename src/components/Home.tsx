@@ -101,13 +101,7 @@ const Home = () => {
             <>
               <Box sx={BoxStyles.variant9}>
                 <Box
-                  sx={{
-                    ...BoxStyles.variant3,
-                    display: "flex",
-                    alignItems: "center",
-
-                    cursor: "pointer",
-                  }}
+                  sx={BoxStyles.variant14}
                   onClick={() => handleItemClick(item1, true)}
                 >
                   <img
@@ -153,13 +147,7 @@ const Home = () => {
 
               <Box sx={BoxStyles.variant9}>
                 <Box
-                  sx={{
-                    ...BoxStyles.variant3,
-                    display: "flex",
-                    alignItems: "center",
-
-                    cursor: "pointer",
-                  }}
+                  sx={BoxStyles.variant14}
                   onClick={() => handleItemClick(item2, false)}
                 >
                   <img
@@ -200,14 +188,7 @@ const Home = () => {
               width={"350px"}
               style={{ borderRadius: "20px" }}
             />
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                mb: 2,
-              }}
-            >
+            <Box sx={BoxStyles.variant13}>
               <Box>
                 <Typography variant="body1">You pay</Typography>
                 <Typography variant="h4">{exchangeData.pay.amount}</Typography>
@@ -226,9 +207,7 @@ const Home = () => {
               </Box>
             </Box>
 
-            <Box
-              sx={BoxStyles.variant12}
-            >
+            <Box sx={BoxStyles.variant12}>
               <Box>
                 <Typography variant="body1" sx={{ color: "#fff" }}>
                   You receive

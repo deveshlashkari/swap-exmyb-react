@@ -18,16 +18,11 @@ interface LoadingDialogProps {
 }
 
 const LoadingDialog: React.FC<LoadingDialogProps> = ({ open, onClose }) => {
-  
-
   useEffect(() => {
     if (open) {
- 
-   setTimeout(() => {
-      onClose();
-    }, 5000);
-  
-
+      setTimeout(() => {
+        onClose();
+      }, 5000);
     }
   }, [open]);
 
@@ -36,16 +31,10 @@ const LoadingDialog: React.FC<LoadingDialogProps> = ({ open, onClose }) => {
       open={open}
       onClose={onClose}
       PaperProps={{
-        style: {
-          color: "white",
-          width: "400px",
-          borderRadius: "10px",
-        },
+        style: BoxStyles.paperprops,
       }}
     >
-      <DialogContent
-        sx={BoxStyles.variant10}
-      >
+      <DialogContent sx={BoxStyles.variant10}>
         <Box sx={BoxStyles.variant11}>
           <CircularProgress
             variant="indeterminate"
@@ -62,11 +51,7 @@ const LoadingDialog: React.FC<LoadingDialogProps> = ({ open, onClose }) => {
         <Typography variant="body2" sx={{ color: "#aaa", mt: 1 }}>
           Swap BERA to HONEY
         </Typography>
-        <IconButton
-          aria-label="close"
-          onClick={onClose}
-          sx={BoxStyles.button2}
-        >
+        <IconButton aria-label="close" onClick={onClose} sx={BoxStyles.button2}>
           <CloseIcon />
         </IconButton>
       </DialogContent>
