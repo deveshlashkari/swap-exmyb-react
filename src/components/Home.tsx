@@ -5,9 +5,10 @@ import {
   Divider,
   IconButton,
   Snackbar,
+  TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BoxStyles } from "../Themes/theme";
 import SettingsIcon from "@mui/icons-material/Settings";
 import BeraImg from "./../assets/BERA.svg";
@@ -17,6 +18,7 @@ import WalletIcon from "@mui/icons-material/Wallet";
 import honeyImg from "./../assets/HONEY.svg";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import TokenDialog from "./TokenDialog";
+import { exchangeRates, usdExchangeRates } from "../constants/exchangeRates";
 
 import CloseIcon from "@mui/icons-material/Close";
 import pImg from "./../assets/Screenshot_2024-08-28_at_3.49.55_PM_1.png";
@@ -45,7 +47,7 @@ const Home = () => {
   });
   const [item2, setItem2] = useState({
     name: "HONEY",
-    balance: "<0.01",
+    balance: "0.01",
     icon: "",
   });
   const handleItemClick = (item: any, val: any) => {
@@ -73,10 +75,20 @@ const Home = () => {
     setOpen(true);
   };
   const handleSwap = () => {
-    const i = item1;
-    setItem1(item2);
+    const i = { ...item1 };
+    setItem1({ ...item2 });
     setItem2(i);
   };
+
+  useEffect(() => {
+    setItem2({
+      ...item2,
+      balance: (
+        parseFloat(item1.balance) * exchangeRates[item1.name][item2.name]
+      ).toString(),
+    });
+  }, [item1]);
+
   return (
     <Box sx={BoxStyles.variant1} p={2} mt={2}>
       {!preview ? (
@@ -105,7 +117,7 @@ const Home = () => {
                   onClick={() => handleItemClick(item1, true)}
                 >
                   <img
-                    src={BeraImg}
+                    src={honeyImg}
                     alt="BERA"
                     style={{ width: 24, height: 24, marginRight: 8 }}
                   />
@@ -114,7 +126,34 @@ const Home = () => {
                   </Typography>
                   <ArrowDropDownIcon fontSize="small" sx={{ ml: 1 }} />
                 </Box>
-                <Typography variant="h6">{item1.balance}</Typography>
+                <TextField
+                  variant="outlined"
+                  value={item1.balance}
+                  inputProps={{
+                    min: 0,
+                    style: { textAlign: "right", padding: 0 },
+                  }}
+                  sx={{
+                    outline: "none",
+                    border: "none",
+                    "& fieldset": { border: "none" },
+                    height: "20px",
+                  }}
+                  onChange={(e) => {
+                    setItem1({
+                      ...item1,
+                      balance: e.target.value,
+                    });
+                    setItem2({
+                      ...item2,
+                      balance: (
+                        parseFloat(e.target.value) *
+                        exchangeRates[item1.name][item2.name]
+                      ).toString(),
+                    });
+                  }}
+                />
+                {/* <Typography variant="h6">{item1.balance}</Typography> */}
               </Box>
 
               <Box
@@ -131,7 +170,7 @@ const Home = () => {
                 </Box>
 
                 <Typography variant="body2" sx={{ opacity: 0.7 }}>
-                  $3.28
+                  {usdExchangeRates[item1.name] * parseFloat(item1.balance)}
                 </Typography>
               </Box>
               <Box sx={{ position: "relative", my: 2 }}>
@@ -160,7 +199,10 @@ const Home = () => {
                   </Typography>
                   <ArrowDropDownIcon fontSize="small" sx={{ ml: 1 }} />
                 </Box>
-                <Typography variant="h6">{item2.balance}</Typography>
+                <Typography variant="h6">
+                  {parseFloat(item1.balance) *
+                    exchangeRates[item1.name][item2.name]}
+                </Typography>
               </Box>
               <Box sx={BoxStyles.variant9}>
                 <Box
@@ -175,7 +217,7 @@ const Home = () => {
                 </Box>
 
                 <Typography variant="body2" sx={{ opacity: 0.7 }}>
-                  $3.28
+                  {usdExchangeRates[item2.name] * parseFloat(item2.balance)}
                 </Typography>
               </Box>
             </>
@@ -191,14 +233,14 @@ const Home = () => {
             <Box sx={BoxStyles.variant13}>
               <Box>
                 <Typography variant="body1">You pay</Typography>
-                <Typography variant="h4">{exchangeData.pay.amount}</Typography>
+                <Typography variant="h4">{item1.balance}</Typography>
                 <Typography variant="body2" sx={{ color: "#aaa" }}>
-                  ${exchangeData.pay.usdValue}
+                  ${usdExchangeRates[item1.name] * parseFloat(item1.balance)}
                 </Typography>
               </Box>
               <Box sx={BoxStyles.variant8}>
                 <img
-                  src={BeraImg}
+                  src={honeyImg}
                   alt={item1.name}
                   width="14px"
                   height="14px"
@@ -213,10 +255,10 @@ const Home = () => {
                   You receive
                 </Typography>
                 <Typography variant="h4" sx={{ color: "#fff" }}>
-                  {exchangeData.receive.amount}
+                  {item2.balance}
                 </Typography>
                 <Typography variant="body2" sx={{ color: "#aaa" }}>
-                  ${exchangeData.receive.usdValue}
+                  ${usdExchangeRates[item2.name] * parseFloat(item2.balance)}
                 </Typography>
               </Box>
               <Box sx={BoxStyles.variant8}>
@@ -230,7 +272,9 @@ const Home = () => {
           <Box sx={{ ...BoxStyles.variant7, mb: 2 }}>
             <Typography variant="body2">Exchange rate</Typography>
             <Typography variant="body2" sx={{ fontWeight: 600 }}>
-              1 BERA = 32.976211 HONEY
+              {`1 ${item1.name} = ${exchangeRates[item1.name][item2.name]} ${
+                item2.name
+              }`}
             </Typography>
           </Box>
 
@@ -239,7 +283,9 @@ const Home = () => {
               {!preview ? " Network fee" : "Min. recived"}
             </Typography>
             <Typography variant="body2">
-              {!preview ? "-" : "32.97621 HONEY"}
+              {!preview
+                ? "-"
+                : `${exchangeRates[item1.name][item2.name]} ${item2.name}`}
             </Typography>
           </Box>
         </Box>
