@@ -167,6 +167,11 @@ export const BoxStyles = {
     width: "350px",
   },
   variant11: { position: "relative", display: "inline-flex" },
+  variant12:{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }
 };
 
 

@@ -1,14 +1,10 @@
 import {
   Alert,
-  AlertTitle,
   Box,
   Button,
-  Container,
-  CssBaseline,
   Divider,
   IconButton,
   Snackbar,
-  Stack,
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
@@ -52,12 +48,12 @@ const Home = () => {
     balance: "<0.01",
     icon: "",
   });
-  const handleItemClick = (item, val) => {
+  const handleItemClick = (item: any, val: any) => {
     setItem1isSelected(val);
 
     setTokenDialog(true);
   };
-  const handleItemSelected = (item) => {
+  const handleItemSelected = (item: any) => {
     if (item1isSelected) {
       setItem1(item);
     } else {
@@ -155,15 +151,7 @@ const Home = () => {
                 </IconButton>
               </Box>
 
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  mb: 2,
-                  width: "100%",
-                }}
-              >
+              <Box sx={BoxStyles.variant9}>
                 <Box
                   sx={{
                     ...BoxStyles.variant3,
@@ -186,14 +174,7 @@ const Home = () => {
                 </Box>
                 <Typography variant="h6">{item2.balance}</Typography>
               </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  mb: 2,
-                }}
-              >
+              <Box sx={BoxStyles.variant9}>
                 <Box
                   sx={{
                     display: "flex",
@@ -230,7 +211,7 @@ const Home = () => {
               <Box>
                 <Typography variant="body1">You pay</Typography>
                 <Typography variant="h4">{exchangeData.pay.amount}</Typography>
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ color: "#aaa" }}>
                   ${exchangeData.pay.usdValue}
                 </Typography>
               </Box>
@@ -246,11 +227,7 @@ const Home = () => {
             </Box>
 
             <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
+              sx={BoxStyles.variant12}
             >
               <Box>
                 <Typography variant="body1" sx={{ color: "#fff" }}>
@@ -283,7 +260,7 @@ const Home = () => {
               {!preview ? " Network fee" : "Min. recived"}
             </Typography>
             <Typography variant="body2">
-              {!preview ? "-" : "32.97621153453 HONEY"}
+              {!preview ? "-" : "32.97621 HONEY"}
             </Typography>
           </Box>
         </Box>

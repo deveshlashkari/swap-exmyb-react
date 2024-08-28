@@ -41,14 +41,14 @@ const tokens2 = [
   { name: "DAI", balance: "0", icon: "" },
 ];
 
-const TokenDialog = ({ open, onClose, handleClick }) => {
+const TokenDialog = ({ open, onClose, handleClick }:any) => {
   const [search, setSearch] = useState("");
 
   const filteredTokens = tokens.filter((token) =>
     token.name.toLowerCase().includes(search.toLowerCase())
   );
 
-    const handleToken = (item) => {
+    const handleToken = (item:any) => {
         console.log(item)
         handleClick(item)
     }
